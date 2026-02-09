@@ -214,6 +214,47 @@ section h2 {
   font-size: 0.9rem;
 }
 
+/* ---- Page cards (landing page) ---- */
+.page-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.page-card {
+  display: block;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.page-card:hover {
+  background: var(--color-bg-alt);
+  border-left-color: var(--color-link-hover);
+}
+
+.page-card-title {
+  display: block;
+  font-weight: 700;
+  color: var(--color-link);
+  margin-bottom: 0.25rem;
+}
+
+.page-card-detail {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-muted);
+}
+
+/* ---- About paragraphs ---- */
+#about p {
+  margin-bottom: 1rem;
+}
+
 /* ---- Footer ---- */
 footer {
   text-align: center;
