@@ -80,59 +80,20 @@ nav a:hover {
   color: var(--color-text);
 }
 
-/* ---- Profile links bar ---- */
-.profile-links {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  padding: 0.75rem 1rem;
-  background: var(--color-bg-alt);
-  border-bottom: 1px solid var(--color-border);
+/* ---- Header profile links ---- */
+.header-links {
+  margin-top: 0.5rem;
 }
 
-.profile-links a {
+.header-links a {
   color: var(--color-link);
   text-decoration: none;
-  font-weight: 600;
   font-size: 0.85rem;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  transition: background 0.15s;
+  margin: 0 0.5rem;
 }
 
-.profile-links a:hover {
-  background: #e8f0f7;
-  color: var(--color-link-hover);
-}
-
-/* ---- Section sub-navigation ---- */
-.subnav {
-  position: sticky;
-  top: 2.25rem;
-  z-index: 99;
-  background: var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
-  padding: 0.4rem 1rem;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.25rem;
-}
-
-.subnav a {
-  color: var(--color-accent);
-  text-decoration: none;
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-  transition: background 0.15s, color 0.15s;
-}
-
-.subnav a:hover {
-  background: var(--color-bg-alt);
-  color: var(--color-link-hover);
+.header-links a:hover {
+  text-decoration: underline;
 }
 
 /* ---- Main content ---- */
@@ -146,7 +107,7 @@ main {
 section {
   padding-top: 2rem;
   margin-bottom: 1rem;
-  scroll-margin-top: 5.5rem;
+  scroll-margin-top: 3.5rem;
 }
 
 section h2 {
@@ -290,16 +251,4 @@ footer a:hover {
     padding: 0.25rem 0.5rem;
   }
 
-  .profile-links {
-    gap: 0.75rem;
-  }
-
-  .subnav {
-    gap: 0.125rem;
-  }
-
-  .subnav a {
-    font-size: 0.7rem;
-    padding: 0.2rem 0.4rem;
-  }
 }
