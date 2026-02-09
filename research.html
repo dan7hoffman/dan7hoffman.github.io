@@ -8,20 +8,19 @@
 </head>
 <body>
 
+<a href="#main" class="skip-link">Skip to main content</a>
+
 <header>
   <h1>Daniel J. Hoffman</h1>
-  <p class="subtitle">Publications & Research</p>
-  <p class="header-links">
-    <a href="https://scholar.google.com/citations?user=Cego9HMAAAAJ&hl=en">Google Scholar</a>
-    <a href="https://www.researchgate.net/profile/Daniel_Hoffman5">ResearchGate</a>
-    <a href="https://orcid.org/0000-0002-0186-7250">ORCID</a>
-    <a href="https://www.ncbi.nlm.nih.gov/myncbi/browse/collection/47248816/?sort=date&direction=ascending">My NCBI</a>
-  </p>
+  <p class="subtitle">Software Engineer &middot; Researcher</p>
 </header>
 
 <nav>
   <a href="index.html">Home</a>
-  <a href="#">Top</a>
+  <a href="research.html">Research</a>
+</nav>
+
+<div class="section-nav">
   <a href="#awards">Awards</a>
   <a href="#activities">Activities</a>
   <a href="#patents">Patents</a>
@@ -29,12 +28,20 @@
   <a href="#lectures">Lectures</a>
   <a href="#proceedings">Proceedings</a>
   <a href="#posters">Posters</a>
-</nav>
+</div>
 
-<main>
+<main id="main">
+
+  <section id="intro">
+    <p class="intro-text">
+      Research focused on health informatics, EHR usability, and patient safety.
+      Publications span clinical workflow analysis, interface design, and cognitive informatics
+      in healthcare settings.
+    </p>
+  </section>
 
   <!-- ============================================================= -->
-  <!-- AWARDS & CERTIFICATIONS                                        -->
+  <!-- AWARDS                                                         -->
   <!-- ============================================================= -->
   <section id="awards">
     <h2>Awards</h2>
@@ -494,8 +501,50 @@
 </main>
 
 <footer>
-  &copy; Daniel J. Hoffman
+  <div class="footer-profiles">
+    <a href="https://scholar.google.com/citations?user=Cego9HMAAAAJ&hl=en">Google Scholar</a>
+    <a href="https://www.researchgate.net/profile/Daniel_Hoffman5">ResearchGate</a>
+    <a href="https://orcid.org/0000-0002-0186-7250">ORCID</a>
+    <a href="https://www.ncbi.nlm.nih.gov/myncbi/browse/collection/47248816/?sort=date&direction=ascending">My NCBI</a>
+  </div>
+  <div class="footer-copyright">&copy; 2026 Daniel J. Hoffman</div>
 </footer>
+
+<button id="scroll-top" aria-label="Scroll to top">&uarr;</button>
+
+<script>
+// Nav shadow on scroll
+const nav = document.querySelector('nav');
+const scrollBtn = document.getElementById('scroll-top');
+
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 10);
+  scrollBtn.classList.toggle('visible', window.scrollY > 300);
+});
+
+scrollBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// Active section highlighting
+const sections = document.querySelectorAll('section[id]');
+const sectionLinks = document.querySelectorAll('.section-nav a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      sectionLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-80px 0px -66%', threshold: 0 });
+
+sections.forEach(section => {
+  if (section.id !== 'intro') observer.observe(section);
+});
+</script>
 
 </body>
 </html>
