@@ -525,18 +525,18 @@
       </div>
 
     </div>
+
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="https://scholar.google.com/citations?user=Cego9HMAAAAJ&hl=en">Google Scholar</a>
+        <a href="https://www.researchgate.net/profile/Daniel_Hoffman5">ResearchGate</a>
+        <a href="https://orcid.org/0000-0002-0186-7250">ORCID</a>
+        <a href="https://www.ncbi.nlm.nih.gov/myncbi/browse/collection/47248816/?sort=date&direction=ascending">My NCBI</a>
+      </div>
+      <div class="footer-copy">&copy; 2026 Daniel J. Hoffman</div>
+    </footer>
   </main>
 </div>
-
-<footer class="site-footer">
-  <div class="footer-links">
-    <a href="https://scholar.google.com/citations?user=Cego9HMAAAAJ&hl=en">Google Scholar</a>
-    <a href="https://www.researchgate.net/profile/Daniel_Hoffman5">ResearchGate</a>
-    <a href="https://orcid.org/0000-0002-0186-7250">ORCID</a>
-    <a href="https://www.ncbi.nlm.nih.gov/myncbi/browse/collection/47248816/?sort=date&direction=ascending">My NCBI</a>
-  </div>
-  <div class="footer-copy">&copy; 2026 Daniel J. Hoffman</div>
-</footer>
 
 <button id="scroll-top" aria-label="Scroll to top">&uarr;</button>
 
@@ -557,20 +557,46 @@ scrollBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// scroll spy — highlight active sidebar link
+// scroll spy — position-based, no flicker
 const sections = document.querySelectorAll('.section[id]');
 const navLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]');
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const id = entry.target.getAttribute('id');
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
-      });
-    }
+const headerOffset = 60;
+
+function setActive(id) {
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === '#' + id);
   });
-}, { rootMargin: '-80px 0px -66%', threshold: 0 });
-sections.forEach(s => observer.observe(s));
+}
+
+function onScroll() {
+  const scrollY = window.scrollY + headerOffset;
+  let current = '';
+
+  // walk sections top-to-bottom; last one whose top is above the threshold wins
+  for (const section of sections) {
+    if (section.offsetTop <= scrollY) {
+      current = section.id;
+    }
+  }
+
+  // if scrolled to the very bottom, activate the last section
+  if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight - 2) {
+    current = sections[sections.length - 1].id;
+  }
+
+  if (current) setActive(current);
+}
+
+// on click: immediately highlight, let native anchor scroll handle the rest
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    const id = link.getAttribute('href').slice(1);
+    setActive(id);
+  });
+});
+
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
 </script>
 
 </body>
