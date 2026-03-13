@@ -537,74 +537,7 @@
 </main>
 
 <button id="scroll-top" aria-label="Scroll to top">&uarr;</button>
-
-<script>
-const hamburger = document.getElementById('hamburger');
-const overlay = document.getElementById('overlay');
-function toggleNav() { document.body.classList.toggle('open'); }
-hamburger.addEventListener('click', toggleNav);
-overlay.addEventListener('click', toggleNav);
-
-const scrollBtn = document.getElementById('scroll-top');
-window.addEventListener('scroll', () => {
-  scrollBtn.classList.toggle('visible', window.scrollY > 300);
-});
-scrollBtn.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// scroll spy — click-lock pattern
-const sections = document.querySelectorAll('.section[id]');
-const navLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]');
-let locked = false;
-let lockTimer;
-
-function setActive(id) {
-  navLinks.forEach(link => {
-    link.classList.toggle('active', link.getAttribute('href') === '#' + id);
-  });
-}
-
-function spy() {
-  if (locked) return;
-  let current = '';
-  for (const s of sections) {
-    if (s.getBoundingClientRect().top <= 80) current = s.id;
-  }
-  if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) {
-    current = sections[sections.length - 1].id;
-  }
-  if (current) setActive(current);
-}
-
-navLinks.forEach(link => {
-  link.addEventListener('click', (e) => {
-    const href = link.getAttribute('href');
-    if (!href.startsWith('#')) return;
-    e.preventDefault();
-    const target = document.getElementById(href.slice(1));
-    if (!target) return;
-
-    locked = true;
-    setActive(href.slice(1));
-    target.scrollIntoView({ behavior: 'smooth' });
-    history.replaceState(null, '', href);
-
-    clearTimeout(lockTimer);
-    lockTimer = setTimeout(() => { locked = false; }, 1000);
-  });
-});
-
-if ('onscrollend' in window) {
-  window.addEventListener('scrollend', () => {
-    clearTimeout(lockTimer);
-    locked = false;
-  });
-}
-
-window.addEventListener('scroll', spy, { passive: true });
-spy();
-</script>
+<script src="site.js"></script>
 
 </body>
 </html>
