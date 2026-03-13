@@ -10,61 +10,138 @@
 
 <a href="#main" class="skip-link">Skip to main content</a>
 
-<header>
-  <h1>Daniel J. Hoffman</h1>
-  <p class="subtitle">Software Engineer &middot; Researcher</p>
+<header class="site-header">
+  <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+    <svg class="bars" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    <svg class="x" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <a href="index.html">Daniel J. Hoffman</a>
 </header>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="research.html">Research</a>
-</nav>
+<div class="sidebar-overlay" id="overlay"></div>
 
-<main id="main">
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
 
-  <section id="about">
-    <h2>About</h2>
-    <p>
-      I'm a software engineer who came up through health informatics research. I spent several years at
-      MedStar Health's National Center for Human Factors in Healthcare studying how clinicians interact
-      with EHR systems, building data pipelines, and publishing work on patient safety and clinical workflow.
-      That work led to a U.S. patent and around 15 journal publications.
-    </p>
-    <p>
-      These days I build production systems — cloud infrastructure on AWS, full-stack applications in
-      TypeScript, and CI/CD pipelines that actually work. I like solving real problems with clean, maintainable
-      code and figuring out how things fit together end to end.
-    </p>
-  </section>
+    <div class="sidebar-label">About</div>
+    <ul class="sidebar-nav">
+      <li><a href="#about">Background</a></li>
+      <li><a href="#current">Current Work</a></li>
+    </ul>
 
-  <section id="research-cta">
-    <h2>Research</h2>
-    <p>
-      Published work on EHR usability, patient safety, and clinical workflow, appearing in
-      <em>Applied Clinical Informatics</em>, <em>Journal of Patient Safety</em>,
-      <em>JAMIA</em>, and others.
-    </p>
-    <p style="margin-top: 1rem;">
-      <a href="research.html" class="cta-link">View Publications & Research &rarr;</a>
-    </p>
-  </section>
+    <div class="sidebar-label">Research</div>
+    <ul class="sidebar-nav">
+      <li><a href="#research-summary">Overview</a></li>
+    </ul>
 
-</main>
+    <div class="sidebar-label">Profiles</div>
+    <ul class="sidebar-nav">
+      <li><a href="#profiles">Links</a></li>
+    </ul>
 
-<footer>
-  <div class="footer-profiles">
+    <hr class="sidebar-divider">
+    <ul class="sidebar-nav">
+      <li><a href="research.html">Publications & Research</a></li>
+    </ul>
+  </nav>
+
+  <main class="main" id="main">
+    <div class="inner">
+
+      <h1>Daniel J. Hoffman</h1>
+      <p class="subtitle">Software Engineer &middot; Researcher</p>
+
+      <!-- ── About ──────────────────────────────────── -->
+      <div class="section" id="about">
+        <h2>Background</h2>
+        <p>
+          I'm a software engineer who came up through health informatics research. I spent several years at
+          MedStar Health's National Center for Human Factors in Healthcare studying how clinicians interact
+          with EHR systems, building data pipelines, and publishing work on patient safety and clinical workflow.
+          That work led to a U.S. patent and around 15 journal publications.
+        </p>
+      </div>
+
+      <div class="section" id="current">
+        <h2>Current Work</h2>
+        <p>
+          These days I build production systems &mdash; cloud infrastructure on AWS, full-stack applications in
+          TypeScript, and CI/CD pipelines that actually work. I like solving real problems with clean, maintainable
+          code and figuring out how things fit together end to end.
+        </p>
+      </div>
+
+      <hr>
+
+      <!-- ── Research CTA ───────────────────────────── -->
+      <div class="section" id="research-summary">
+        <h2>Research</h2>
+        <p>
+          Published work on EHR usability, patient safety, and clinical workflow, appearing in
+          <em>Applied Clinical Informatics</em>, <em>Journal of Patient Safety</em>,
+          <em>JAMIA</em>, and others.
+        </p>
+        <p style="margin-top: 0.75rem;">
+          <a href="research.html" class="cta-link">View Publications & Research &rarr;</a>
+        </p>
+      </div>
+
+      <hr>
+
+      <!-- ── Profiles ───────────────────────────────── -->
+      <div class="section" id="profiles">
+        <h2>Profiles</h2>
+        <div class="profiles">
+          <a href="https://linkedin.com/in/danieljameshoffman">LinkedIn</a>
+          <a href="https://github.com/dan7hoffman">GitHub</a>
+          <a href="https://scholar.google.com/citations?user=Cego9HMAAAAJ&hl=en">Google Scholar</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-links">
     <a href="https://linkedin.com/in/danieljameshoffman">LinkedIn</a>
     <a href="https://github.com/dan7hoffman">GitHub</a>
     <a href="https://scholar.google.com/citations?user=Cego9HMAAAAJ&hl=en">Google Scholar</a>
   </div>
-  <div class="footer-copyright">&copy; 2026 Daniel J. Hoffman</div>
+  <div class="footer-copy">&copy; 2026 Daniel J. Hoffman</div>
 </footer>
 
+<button id="scroll-top" aria-label="Scroll to top">&uarr;</button>
+
 <script>
-const nav = document.querySelector('nav');
+const hamburger = document.getElementById('hamburger');
+const overlay = document.getElementById('overlay');
+function toggleNav() { document.body.classList.toggle('open'); }
+hamburger.addEventListener('click', toggleNav);
+overlay.addEventListener('click', toggleNav);
+
+const scrollBtn = document.getElementById('scroll-top');
 window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 10);
+  scrollBtn.classList.toggle('visible', window.scrollY > 300);
 });
+scrollBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// scroll spy
+const sections = document.querySelectorAll('.section[id]');
+const navLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-80px 0px -66%', threshold: 0 });
+sections.forEach(s => observer.observe(s));
 </script>
 
 </body>
