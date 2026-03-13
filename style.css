@@ -1,6 +1,6 @@
 /* ================================================================
    Daniel J. Hoffman — Personal Site
-   DDD App Layout: Header / Sidebar / Content / Footer
+   DDD App Layout: Fixed Header / Fixed Sidebar / Content / Footer
    ================================================================ */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -34,7 +34,7 @@ body { font-family: var(--font-sans); color: var(--text); line-height: 1.65; }
 }
 .skip-link:focus { top: 0; }
 
-/* ── Header ──────────────────────────────────────────── */
+/* ── Header — fixed top bar ──────────────────────────── */
 .site-header {
   position: fixed; top: 0; left: 0; right: 0;
   height: var(--header-height);
@@ -50,7 +50,7 @@ body { font-family: var(--font-sans); color: var(--text); line-height: 1.65; }
   color: var(--text-muted); font-weight: 400; font-size: 0.8125rem;
 }
 
-/* hamburger (mobile) */
+/* hamburger (mobile only) */
 .hamburger {
   display: none; width: 32px; height: 32px;
   border: 1px solid var(--border); border-radius: 4px;
@@ -61,20 +61,24 @@ body { font-family: var(--font-sans); color: var(--text); line-height: 1.65; }
 body.open .hamburger .bars { display: none; }
 body.open .hamburger .x { display: block; }
 
-/* ── Layout ──────────────────────────────────────────── */
-.layout {
-  display: flex; margin-top: var(--header-height);
-  min-height: calc(100vh - var(--header-height));
-}
-
-/* ── Sidebar ─────────────────────────────────────────── */
+/* ── Sidebar — fixed left panel ──────────────────────── */
 .sidebar {
-  width: var(--sidebar-width); flex-shrink: 0;
-  position: sticky; top: var(--header-height);
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  width: var(--sidebar-width);
   height: calc(100vh - var(--header-height));
-  overflow-y: auto; border-right: 1px solid var(--border);
-  background: var(--bg-sidebar); padding: 1.25rem 0 3rem;
+  overflow-y: auto;
+  border-right: 1px solid var(--border);
+  background: var(--bg-sidebar);
+  padding: 1.25rem 0 3rem;
+  z-index: 50;
 }
+.sidebar-back {
+  display: block; font-size: 0.8125rem; color: var(--text-muted);
+  text-decoration: none; padding: 0 1rem 0.75rem;
+}
+.sidebar-back:hover { color: var(--text); }
 .sidebar-label {
   font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.06em;
   text-transform: uppercase; color: #9ca3af;
@@ -101,13 +105,21 @@ body.open .hamburger .x { display: block; }
   background: rgba(0,0,0,0.3); z-index: 49;
 }
 
-/* ── Main content ────────────────────────────────────── */
+/* ── Main content — offset by sidebar width ──────────── */
 .main {
-  flex: 1; min-width: 0;
-  padding: 2.5rem 2rem 0;
-  display: flex; flex-direction: column;
+  margin-top: var(--header-height);
+  margin-left: var(--sidebar-width);
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  flex-direction: column;
 }
-.inner { max-width: var(--content-max); margin: 0 auto; flex: 1; padding-bottom: 3rem; }
+.inner {
+  max-width: var(--content-max);
+  width: 100%;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 3rem;
+  flex: 1;
+}
 
 /* page headings */
 h1 {
@@ -160,7 +172,7 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
 .entry .journal { font-style: italic; }
 .entry strong { font-weight: 700; }
 
-/* external link indicator */
+/* external link arrow */
 .entry a[href^="http"]::after,
 .award a[href^="http"]::after {
   content: " \2197"; font-size: 0.65em; opacity: 0.35; margin-left: 0.1em;
@@ -215,15 +227,13 @@ hr { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
 }
 .profiles a:hover { border-bottom-color: var(--accent); }
 
-/* ── Footer ──────────────────────────────────────────── */
+/* ── Footer — pinned to bottom of main ───────────────── */
 .site-footer {
   margin-top: auto;
   border-top: 1px solid var(--border);
   padding: 1.5rem 2rem;
   text-align: center;
   background: var(--bg-sidebar);
-  margin-left: -2rem;
-  margin-right: -2rem;
 }
 .footer-links {
   display: flex; justify-content: center; gap: 1.5rem;
@@ -259,20 +269,18 @@ a:focus-visible {
 @media (max-width: 768px) {
   .hamburger { display: flex; }
   .sidebar {
-    position: fixed; top: var(--header-height); left: 0; bottom: 0;
-    height: auto; z-index: 50;
-    transform: translateX(-100%); transition: transform 0.2s ease;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
   }
   body.open .sidebar { transform: translateX(0); }
   body.open .sidebar-overlay { display: block; }
-  .main { padding: 1.5rem 1rem 0; }
-  .site-footer { margin-left: -1rem; margin-right: -1rem; }
+  .main { margin-left: 0; }
+  .inner { padding: 1.5rem 1rem 2rem; }
   h1 { font-size: 1.4rem; }
 }
 
 /* ── Print ───────────────────────────────────────────── */
 @media print {
   .site-header, .sidebar, .hamburger, .sidebar-overlay, #scroll-top { display: none; }
-  .layout { margin-top: 0; }
-  .main { padding: 0; }
+  .main { margin-top: 0; margin-left: 0; }
 }

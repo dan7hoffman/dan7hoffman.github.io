@@ -20,96 +20,90 @@
 
 <div class="sidebar-overlay" id="overlay"></div>
 
-<div class="layout">
-  <nav class="sidebar" id="sidebar">
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-label">About</div>
+  <ul class="sidebar-nav">
+    <li><a href="#about">Background</a></li>
+    <li><a href="#current">Current Work</a></li>
+  </ul>
 
-    <div class="sidebar-label">About</div>
-    <ul class="sidebar-nav">
-      <li><a href="#about">Background</a></li>
-      <li><a href="#current">Current Work</a></li>
-    </ul>
+  <div class="sidebar-label">Research</div>
+  <ul class="sidebar-nav">
+    <li><a href="#research-summary">Overview</a></li>
+  </ul>
 
-    <div class="sidebar-label">Research</div>
-    <ul class="sidebar-nav">
-      <li><a href="#research-summary">Overview</a></li>
-    </ul>
+  <div class="sidebar-label">Profiles</div>
+  <ul class="sidebar-nav">
+    <li><a href="#profiles">Links</a></li>
+  </ul>
 
-    <div class="sidebar-label">Profiles</div>
-    <ul class="sidebar-nav">
-      <li><a href="#profiles">Links</a></li>
-    </ul>
+  <hr class="sidebar-divider">
+  <ul class="sidebar-nav">
+    <li><a href="research.html">Publications & Research</a></li>
+  </ul>
+</nav>
 
-    <hr class="sidebar-divider">
-    <ul class="sidebar-nav">
-      <li><a href="research.html">Publications & Research</a></li>
-    </ul>
-  </nav>
+<main class="main" id="main">
+  <div class="inner">
 
-  <main class="main" id="main">
-    <div class="inner">
+    <h1>Daniel J. Hoffman</h1>
+    <p class="subtitle">Software Engineer &middot; Researcher</p>
 
-      <h1>Daniel J. Hoffman</h1>
-      <p class="subtitle">Software Engineer &middot; Researcher</p>
-
-      <!-- ── About ──────────────────────────────────── -->
-      <div class="section" id="about">
-        <h2>Background</h2>
-        <p>
-          I'm a software engineer who came up through health informatics research. I spent several years at
-          MedStar Health's National Center for Human Factors in Healthcare studying how clinicians interact
-          with EHR systems, building data pipelines, and publishing work on patient safety and clinical workflow.
-          That work led to a U.S. patent and around 15 journal publications.
-        </p>
-      </div>
-
-      <div class="section" id="current">
-        <h2>Current Work</h2>
-        <p>
-          These days I build production systems &mdash; cloud infrastructure on AWS, full-stack applications in
-          TypeScript, and CI/CD pipelines that actually work. I like solving real problems with clean, maintainable
-          code and figuring out how things fit together end to end.
-        </p>
-      </div>
-
-      <hr>
-
-      <!-- ── Research CTA ───────────────────────────── -->
-      <div class="section" id="research-summary">
-        <h2>Research</h2>
-        <p>
-          Published work on EHR usability, patient safety, and clinical workflow, appearing in
-          <em>Applied Clinical Informatics</em>, <em>Journal of Patient Safety</em>,
-          <em>JAMIA</em>, and others.
-        </p>
-        <p style="margin-top: 0.75rem;">
-          <a href="research.html" class="cta-link">View Publications & Research &rarr;</a>
-        </p>
-      </div>
-
-      <hr>
-
-      <!-- ── Profiles ───────────────────────────────── -->
-      <div class="section" id="profiles">
-        <h2>Profiles</h2>
-        <div class="profiles">
-          <a href="https://linkedin.com/in/danieljameshoffman">LinkedIn</a>
-          <a href="https://github.com/dan7hoffman">GitHub</a>
-          <a href="https://scholar.google.com/citations?user=Cego9HMAAAAJ&hl=en">Google Scholar</a>
-        </div>
-      </div>
-
+    <div class="section" id="about">
+      <h2>Background</h2>
+      <p>
+        I'm a software engineer who came up through health informatics research. I spent several years at
+        MedStar Health's National Center for Human Factors in Healthcare studying how clinicians interact
+        with EHR systems, building data pipelines, and publishing work on patient safety and clinical workflow.
+        That work led to a U.S. patent and around 15 journal publications.
+      </p>
     </div>
 
-    <footer class="site-footer">
-      <div class="footer-links">
+    <div class="section" id="current">
+      <h2>Current Work</h2>
+      <p>
+        These days I build production systems &mdash; cloud infrastructure on AWS, full-stack applications in
+        TypeScript, and CI/CD pipelines that actually work. I like solving real problems with clean, maintainable
+        code and figuring out how things fit together end to end.
+      </p>
+    </div>
+
+    <hr>
+
+    <div class="section" id="research-summary">
+      <h2>Research</h2>
+      <p>
+        Published work on EHR usability, patient safety, and clinical workflow, appearing in
+        <em>Applied Clinical Informatics</em>, <em>Journal of Patient Safety</em>,
+        <em>JAMIA</em>, and others.
+      </p>
+      <p style="margin-top: 0.75rem;">
+        <a href="research.html" class="cta-link">View Publications & Research &rarr;</a>
+      </p>
+    </div>
+
+    <hr>
+
+    <div class="section" id="profiles">
+      <h2>Profiles</h2>
+      <div class="profiles">
         <a href="https://linkedin.com/in/danieljameshoffman">LinkedIn</a>
         <a href="https://github.com/dan7hoffman">GitHub</a>
         <a href="https://scholar.google.com/citations?user=Cego9HMAAAAJ&hl=en">Google Scholar</a>
       </div>
-      <div class="footer-copy">&copy; 2026 Daniel J. Hoffman</div>
-    </footer>
-  </main>
-</div>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="https://linkedin.com/in/danieljameshoffman">LinkedIn</a>
+      <a href="https://github.com/dan7hoffman">GitHub</a>
+      <a href="https://scholar.google.com/citations?user=Cego9HMAAAAJ&hl=en">Google Scholar</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Daniel J. Hoffman</div>
+  </footer>
+</main>
 
 <button id="scroll-top" aria-label="Scroll to top">&uarr;</button>
 
@@ -128,10 +122,9 @@ scrollBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// scroll spy — position-based
+// scroll spy — viewport-relative via getBoundingClientRect
 const sections = document.querySelectorAll('.section[id]');
 const navLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]');
-const headerOffset = 60;
 
 function setActive(id) {
   navLinks.forEach(link => {
@@ -140,10 +133,11 @@ function setActive(id) {
 }
 
 function onScroll() {
-  const scrollY = window.scrollY + headerOffset;
   let current = '';
   for (const section of sections) {
-    if (section.offsetTop <= scrollY) current = section.id;
+    if (section.getBoundingClientRect().top <= 80) {
+      current = section.id;
+    }
   }
   if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight - 2) {
     current = sections[sections.length - 1].id;
@@ -152,10 +146,7 @@ function onScroll() {
 }
 
 navLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    const id = link.getAttribute('href').slice(1);
-    setActive(id);
-  });
+  link.addEventListener('click', () => setActive(link.getAttribute('href').slice(1)));
 });
 
 window.addEventListener('scroll', onScroll, { passive: true });
