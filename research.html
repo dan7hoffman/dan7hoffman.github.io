@@ -553,9 +553,11 @@ scrollBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// scroll spy — viewport-relative via getBoundingClientRect
+// scroll spy — click-lock pattern
 const sections = document.querySelectorAll('.section[id]');
 const navLinks = document.querySelectorAll('.sidebar-nav a[href^="#"]');
+let locked = false;
+let lockTimer;
 
 function setActive(id) {
   navLinks.forEach(link => {
@@ -563,25 +565,45 @@ function setActive(id) {
   });
 }
 
-function onScroll() {
+function spy() {
+  if (locked) return;
   let current = '';
-  for (const section of sections) {
-    if (section.getBoundingClientRect().top <= 80) {
-      current = section.id;
-    }
+  for (const s of sections) {
+    if (s.getBoundingClientRect().top <= 80) current = s.id;
   }
-  if ((window.innerHeight + window.scrollY) >= document.body.scrollHeight - 2) {
+  if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 2) {
     current = sections[sections.length - 1].id;
   }
   if (current) setActive(current);
 }
 
 navLinks.forEach(link => {
-  link.addEventListener('click', () => setActive(link.getAttribute('href').slice(1)));
+  link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href');
+    if (!href.startsWith('#')) return;
+    e.preventDefault();
+    const target = document.getElementById(href.slice(1));
+    if (!target) return;
+
+    locked = true;
+    setActive(href.slice(1));
+    target.scrollIntoView({ behavior: 'smooth' });
+    history.replaceState(null, '', href);
+
+    clearTimeout(lockTimer);
+    lockTimer = setTimeout(() => { locked = false; }, 1000);
+  });
 });
 
-window.addEventListener('scroll', onScroll, { passive: true });
-onScroll();
+if ('onscrollend' in window) {
+  window.addEventListener('scrollend', () => {
+    clearTimeout(lockTimer);
+    locked = false;
+  });
+}
+
+window.addEventListener('scroll', spy, { passive: true });
+spy();
 </script>
 
 </body>

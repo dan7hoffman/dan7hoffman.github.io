@@ -23,7 +23,7 @@
   --bg-sidebar: #f9fafb;
 }
 
-html { font-size: 15px; scroll-behavior: smooth; }
+html { font-size: 15px; scroll-behavior: smooth; scroll-padding-top: 80px; }
 body { font-family: var(--font-sans); color: var(--text); line-height: 1.65; }
 
 /* ── Skip link (a11y) ────────────────────────────────── */
